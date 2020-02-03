@@ -3,29 +3,19 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
   http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>com.mkyong</groupId>
 	<artifactId>spring-boot-simple</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0</version>
-
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.2.RELEASE</version>
 	</parent>
-
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
-	<repositories>
-		<repository>
-			<id>my-internal-site</id>
-			<url>https://mvnrepository.com/artifact/com.oracle/ojdbc7</url>
-		</repository>
-	</repositories>
 	<dependencies>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -38,15 +28,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc7 -->
-		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc7 -->
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc7</artifactId>
 			<version>12.2.0.2</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -58,17 +44,14 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- junit 5 -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
-
 			<plugin>
 				<groupId>com.github.spotbugs</groupId>
 				<artifactId>spotbugs-maven-plugin</artifactId>
@@ -83,5 +66,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
