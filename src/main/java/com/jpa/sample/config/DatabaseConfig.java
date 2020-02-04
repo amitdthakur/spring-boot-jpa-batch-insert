@@ -14,9 +14,22 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zaxxer.hikari.HikariDataSource;
 
+/**
+ * This class will create the beans for data base config.
+ * 
+ * @author sam
+ *
+ */
 @Configuration
 @EnableTransactionManagement
 public class DatabaseConfig {
+
+	/**
+	 * This function will create the {@link HikariDataSource} Object.
+	 * 
+	 * @return {@link DataSource} Object.
+	 */
+	// TODO:Please replace the below properties as per the data base server.
 	@Bean
 	public DataSource dataSource() {
 		HikariDataSource dataSource = new HikariDataSource();
@@ -42,7 +55,6 @@ public class DatabaseConfig {
 		entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
 		// Hibernate properties
 		Properties additionalProperties = new Properties();
-		additionalProperties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
 		additionalProperties.put("hibernate.show_sql", "true");
 		additionalProperties.put("hibernate.hbm2ddl.auto", "none");
 		additionalProperties.put("hibernate.jdbc.batch_size", "5");

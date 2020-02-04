@@ -10,7 +10,9 @@ import org.springframework.context.annotation.Configuration;
 @Aspect
 @Configuration
 public class LoggingAspect {
-
+	/**
+	 * Logger instance
+	 */
 	private Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
 	@Before("execution(* com.mkyong.*.*(..))")

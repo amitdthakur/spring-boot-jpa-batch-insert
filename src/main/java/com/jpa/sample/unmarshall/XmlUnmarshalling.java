@@ -6,24 +6,20 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import com.jpa.sample.dto.EmployeeXml;
+import com.jpa.sample.entity.EmployeeXml;
 
 public class XmlUnmarshalling {
-
-	public EmployeeXml unmarshall() throws JAXBException {
-
-		String xmlString = "<employee> <firstName>Lokesh</firstName>" + "    <id>1</id>"
-				+ "  <lastName>34/03/2020</lastName>" + "</employee>";
-
+	/**
+	 * This function will convert string object to POJO.
+	 * 
+	 * @param xml Input String object
+	 * @return EmployeeXmlPOJO
+	 * @throws JAXBException If XML conversion failed.
+	 */
+	public static EmployeeXml unmarshall(String xml) throws JAXBException {
 		JAXBContext jaxbContext = JAXBContext.newInstance(EmployeeXml.class);
 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-
-		StringReader reader = new StringReader(xmlString);
+		StringReader reader = new StringReader(xml);
 		return (EmployeeXml) unmarshaller.unmarshal(reader);
-	}
-
-	public static void main(String[] args) throws JAXBException {
-		EmployeeXml employee = new XmlUnmarshalling().unmarshall();
-		System.out.println(employee.getLastName().getMonth());
 	}
 }

@@ -1,4 +1,4 @@
-package com.jpa.sample.dto;
+package com.jpa.sample.entity;
 
 import java.time.LocalDate;
 
@@ -11,7 +11,7 @@ import com.jpa.sample.unmarshall.DateFormatAdapter;
 public class EmployeeXml {
 	private Integer id;
 	private String firstName;
-	private LocalDate lastName;
+	private LocalDate birthDate;
 
 	public Integer getId() {
 		return id;
@@ -29,22 +29,18 @@ public class EmployeeXml {
 		this.firstName = firstName;
 	}
 
-	public LocalDate getLastName() {
-		return lastName;
+	public LocalDate getBirthDate() {
+		return birthDate;
 	}
 
 	@XmlJavaTypeAdapter(DateFormatAdapter.class)
-	public void setLastName(LocalDate lastName) {
-		this.lastName = lastName;
-	}
-
-	public EmployeeXml() {
-		super();
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	@Override
 	public String toString() {
-		return "EmployeeXml [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "EmployeeXml [id=" + id + ", firstName=" + firstName + ", birthDate=" + birthDate + "]";
 	}
 
 }
