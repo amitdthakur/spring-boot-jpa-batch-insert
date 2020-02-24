@@ -35,8 +35,8 @@ public class DatabaseConfig {
 		HikariDataSource dataSource = new HikariDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setJdbcUrl("");
-		dataSource.setUsername("");
-		dataSource.setPassword("");
+		dataSource.setUsername("admin");
+		dataSource.setPassword("admin");
 		dataSource.setMaximumPoolSize(10);
 		return dataSource;
 	}
@@ -57,7 +57,7 @@ public class DatabaseConfig {
 		Properties additionalProperties = new Properties();
 		additionalProperties.put("hibernate.show_sql", "true");
 		additionalProperties.put("hibernate.hbm2ddl.auto", "none");
-		additionalProperties.put("hibernate.jdbc.batch_size", "5");
+		additionalProperties.put("hibernate.jdbc.batch_size", "10");
 		additionalProperties.put("hibernate.order_inserts", "true");
 		additionalProperties.put("hibernate.order_updates", "true");
 		additionalProperties.put("hibernate.jdbc.batch_versioned_data", "true");

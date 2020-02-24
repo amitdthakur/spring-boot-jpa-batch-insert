@@ -1,12 +1,17 @@
 package com.jpa.sample.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Employee entity mapped to employee table.
@@ -17,6 +22,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "employee")
 @IdClass(CompositeKey.class)
+@AllArgsConstructor
+@Data
+@NoArgsConstructor
 public class Employee {
 
 	@Id
@@ -25,31 +33,10 @@ public class Employee {
 	@Id
 	@Column(name = "date_created")
 	private LocalDate dateCreated;
+	
+	@Column(name = "action_date")
+	private LocalDateTime actionDate;
 
-	public Employee(int id, LocalDate dateCreated) {
-		super();
-		this.id = id;
-		this.dateCreated = dateCreated;
-	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public LocalDate getDateCreated() {
-		return dateCreated;
-	}
-
-	public void setDateCreated(LocalDate dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-
-	public Employee() {
-		super();
-	}
-
+	
 }
