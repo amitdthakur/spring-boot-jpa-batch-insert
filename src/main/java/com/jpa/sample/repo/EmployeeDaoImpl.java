@@ -1,5 +1,7 @@
 package com.jpa.sample.repo;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -36,12 +38,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		int batchSize = 25;
-		for (int i = 0; i < employees.size(); i++) {
+		for (int i = 0; i < 6; i++) {
 			if (i > 0 && i % batchSize == 0) {
 				entityManager.flush();
 				entityManager.clear();
 			}
-			entityManager.persist(employees.get(i));
+			entityManager.persist(new Employee(i, LocalDate.now(),LocalDateTime.now()));
 		}
 		transaction.commit();
 	}
