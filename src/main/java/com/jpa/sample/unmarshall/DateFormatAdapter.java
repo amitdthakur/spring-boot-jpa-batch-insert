@@ -1,25 +1,24 @@
 package com.jpa.sample.unmarshall;
 
+import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
-
 public class DateFormatAdapter extends XmlAdapter<String, LocalDate> {
 
-	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+  private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-	// Marshal converting Java to XML
-	@Override
-	public String marshal(LocalDate date) throws Exception {
-		return date.toString();
-	}
+  // Marshal converting Java to XML
+  @Override
+  public String marshal(LocalDate date) throws Exception {
+    return date.toString();
+  }
 
-	// UnMarshal converting XML to Java
-	@Override
-	public LocalDate unmarshal(String date) throws Exception {
-		LocalDate localDate = LocalDate.parse(date, formatter);
-		return localDate;
-	}
+  // UnMarshal converting XML to Java
+  @Override
+  public LocalDate unmarshal(String date) throws Exception {
+    LocalDate localDate = LocalDate.parse(date, formatter);
+    return localDate;
+  }
 
 }

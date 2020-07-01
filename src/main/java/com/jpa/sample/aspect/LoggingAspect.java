@@ -10,13 +10,14 @@ import org.springframework.context.annotation.Configuration;
 @Aspect
 @Configuration
 public class LoggingAspect {
-	/**
-	 * Logger instance
-	 */
-	private Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
-	@Before("execution(* com.mkyong.*.*(..))")
-	public void logBeforeV1(JoinPoint joinPoint) {
-		logger.info("EmployeeCRUDAspect.logBeforeV1() : " + joinPoint.getSignature().getName());
-	}
+  /**
+   * Logger instance
+   */
+  private Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
+
+  @Before("execution(* com.jpa.sample.*.*(..))")
+  public void logBeforeV1(JoinPoint joinPoint) {
+    logger.info("EmployeeCRUDAspect.logBeforeV1() : " + joinPoint.getSignature().getName());
+  }
 }
