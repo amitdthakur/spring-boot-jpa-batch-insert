@@ -1,18 +1,16 @@
 package com.jpa.sample.repo;
 
+import com.jpa.sample.entity.CompositeKey;
+import com.jpa.sample.entity.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
+public interface EmployeeRepository extends JpaRepository<Employee, CompositeKey> {
 
-import com.jpa.sample.entity.CompositeKey;
-import com.jpa.sample.entity.Employee;
+  List<Employee> findByActionDateBetween(LocalDateTime date, LocalDateTime after);
 
-public interface EmployeeRepository extends CrudRepository<Employee, CompositeKey> {
+  List<Employee> findByActionDateLessThanEqual(LocalDateTime date);
 
-	public List<Employee> findByActionDateBetween(LocalDateTime date, LocalDateTime after); 
-	
-	
-	public List<Employee> findByActionDateLessThanEqual(LocalDateTime date); 
-	
 }
