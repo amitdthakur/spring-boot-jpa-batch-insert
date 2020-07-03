@@ -16,6 +16,8 @@
         <!-- plugin version-->
         <spotbugs-maven-plugin.version>4.0.4</spotbugs-maven-plugin.version>
         <spotbugs.version>4.0.3</spotbugs.version>
+        <maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
+        <checkstyle.version>8.33</checkstyle.version>
         <!-- dependency version-->
         <java.version>1.8</java.version>
         <ojdbc7.version>12.2.0.2</ojdbc7.version>
@@ -64,6 +66,7 @@
         <!-- Plugin management-->
         <pluginManagement>
             <plugins>
+                <!--Spot bugs plugin-->
                 <plugin>
                     <groupId>com.github.spotbugs</groupId>
                     <artifactId>spotbugs-maven-plugin</artifactId>
@@ -85,6 +88,31 @@
                         </execution>
                     </executions>
                 </plugin>
+                <!-- Checkstyle plugin please change the value of failOnViolation to true-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${maven-checkstyle-plugin.version}</version>
+                    <configuration>
+                        <failOnViolation>false</failOnViolation>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>check-violations</id>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.puppycrawl.tools</groupId>
+                            <artifactId>checkstyle</artifactId>
+                            <version>${checkstyle.version}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -95,6 +123,10 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
