@@ -1,6 +1,7 @@
 package com.jpa.sample.aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -17,7 +18,12 @@ public class LoggingAspect {
   private Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
   @Before("execution(* com.jpa.sample.*.*(..))")
-  public void logBeforeV1(JoinPoint joinPoint) {
-    logger.info("EmployeeCRUDAspect.logBeforeV1() : " + joinPoint.getSignature().getName());
+  public void logBeforeFunctionCall(JoinPoint joinPoint) {
+    logger.info("Before function executed : " + joinPoint.getSignature().getName());
+  }
+
+  @After("execution(* com.jpa.sample.*.*(..))")
+  public void logAfterFunctionCall(JoinPoint joinPoint) {
+    logger.info("After function executed : " + joinPoint.getSignature().getName());
   }
 }
