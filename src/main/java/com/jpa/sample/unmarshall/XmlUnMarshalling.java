@@ -6,7 +6,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-public class XmlUnMarshalling {
+public final class XmlUnMarshalling {
 
   /**
    * This function will convert string object to POJO.
@@ -20,6 +20,10 @@ public class XmlUnMarshalling {
     Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
     StringReader reader = new StringReader(xml);
     return (EmployeeXml) unmarshaller.unmarshal(reader);
+  }
+
+  private XmlUnMarshalling(){
+
   }
 
 }
