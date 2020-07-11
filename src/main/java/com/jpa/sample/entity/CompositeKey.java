@@ -8,7 +8,7 @@ import java.time.LocalDate;
 /**
  * This class represent the composite key for employee class.
  *
- * @author sam
+ * @author SAM
  */
 @NoArgsConstructor
 public class CompositeKey implements Serializable {

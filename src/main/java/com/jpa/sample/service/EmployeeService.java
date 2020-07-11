@@ -1,10 +1,14 @@
-package com.jpa.sample.repo;
+package com.jpa.sample.service;
 
 import com.jpa.sample.entity.Employee;
-
 import java.util.List;
 
-public interface EmployeeDao {
+/**
+ * Employee service.
+ *
+ * @author SAM
+ */
+public interface EmployeeService {
 
   /**
    * This function will create the employees from the list.

@@ -1,20 +1,19 @@
-package com.jpa.sample.repo;
+package com.jpa.sample.dao;
 
 import com.jpa.sample.entity.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
- * Repository class for employee
+ * Dao impl class for employee.
  *
- * @author sam
+ * @author SAM
  */
 @Repository
 public class EmployeeDaoImpl implements EmployeeDao {
@@ -24,6 +23,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
    */
   private EntityManagerFactory entityManagerFactory;
 
+  /**
+   * Public constructor for auto wiring.
+   *
+   * @param entityManagerFactory EntityManagerFactory object.
+   */
   @Autowired
   public EmployeeDaoImpl(EntityManagerFactory entityManagerFactory) {
     this.entityManagerFactory = entityManagerFactory;

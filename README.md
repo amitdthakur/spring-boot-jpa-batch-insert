@@ -6,6 +6,9 @@ This project consist logic to insert multiple employee objects using batch batch
 
 Composite key for the entity is implemented with the help of @IdClass
 
+* Added spot bugs,checkstyle and owsap plugin.
+* Added profile yaml file.To activate the profile add system property based on env -Dspring.active.profile=dev 
+
 ### How to import
 
 *  Clone the repository .
@@ -14,13 +17,13 @@ Composite key for the entity is implemented with the help of @IdClass
 ### How to run
 
 *  Type `mvn clean package`.
-*  Go to target folder and type `java -jar jarfileName`.
+*  Go to target folder and type `java -Dspring.profiles.active -jar jarfileName`.
 
 ## Note
-Please replace the data base user name,password and DB url.
+Please replace the data base details in yml file.
 
 
 ## Credits
 Sam
-Amit
+Amit(thakuramitcomp@gmail.com)
 
