@@ -1,0 +1,12 @@
+database:
+  driverName: oracle.jdbc.driver.OracleDriver
+  userName: admin
+  password: admin
+  url: jdbc:oracle:thin:@LAPTOP-LG3DSMSM:1521:xe
+  maximumPoolSize: 10
+  showSql: true
+  autoDdl: none
+  batchSize: 10
+logging:
+  level:
+    root: INFO

@@ -1,6 +1,10 @@
 package com.jpa.sample.config;
 
+import com.jpa.sample.etl.DataBase;
 import com.zaxxer.hikari.HikariDataSource;
+import java.util.Properties;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -9,32 +13,43 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.sql.DataSource;
-import java.util.Properties;
-
 /**
  * This class will create the beans for data base config.
  *
- * @author sam
+ * @author SAM
  */
 @Configuration
 @EnableTransactionManagement
 public class DatabaseConfig {
 
   /**
+   * To inject data base configuration from yaml file.
+   */
+  private DataBase database;
+
+  /**
+   * Public constructor for auto wiring.
+   *
+   * @param database DataBase Object for data base configuration.
+   */
+  @Autowired
+  public DatabaseConfig(DataBase database) {
+    this.database = database;
+  }
+
+  /**
    * This function will create the {@link HikariDataSource} Object.
    *
    * @return {@link DataSource} Object.
    */
-  // TODO:Please replace the below properties as per the data base server.
   @Bean
   public DataSource dataSource() {
     HikariDataSource dataSource = new HikariDataSource();
-    dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-    dataSource.setJdbcUrl("");
-    dataSource.setUsername("admin");
-    dataSource.setPassword("admin");
-    dataSource.setMaximumPoolSize(10);
+    dataSource.setDriverClassName(database.getDriverName());
+    dataSource.setJdbcUrl(database.getUrl());
+    dataSource.setUsername(database.getUserName());
+    dataSource.setPassword(database.getPassword());
+    dataSource.setMaximumPoolSize(database.getMaximumPoolSize());
     return dataSource;
   }
 
@@ -52,12 +67,9 @@ public class DatabaseConfig {
     entityManagerFactory.setJpaVendorAdapter(vendorAdapter);
     // Hibernate properties
     Properties additionalProperties = new Properties();
-    additionalProperties.put("hibernate.show_sql", "true");
-    additionalProperties.put("hibernate.hbm2ddl.auto", "none");
-    additionalProperties.put("hibernate.jdbc.batch_size", "10");
-    additionalProperties.put("hibernate.order_inserts", "true");
-    additionalProperties.put("hibernate.order_updates", "true");
-    additionalProperties.put("hibernate.jdbc.batch_versioned_data", "true");
+    additionalProperties.put("hibernate.show_sql", database.getShowSql());
+    additionalProperties.put("hibernate.hbm2ddl.auto", database.getAutoDdl());
+    additionalProperties.put("hibernate.jdbc.batch_size", database.getBatchSize());
     entityManagerFactory.setJpaProperties(additionalProperties);
     return entityManagerFactory;
   }
