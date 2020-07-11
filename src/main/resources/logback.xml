@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+  <appender name="FILE-ROLLING"
+    class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOGGER_PATH}/Application.log</file>
+    <rollingPolicy
+      class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${LOGGER_PATH}/Application.%d{yyyy-MM-dd}.%i.log
+      </fileNamePattern>
+      <!-- each archived file, size max 10MB -->
+      <maxFileSize>10MB</maxFileSize>
+      <!-- total size of all archive files, if total size > 20GB, it will delete
+        old archived file -->
+      <totalSizeCap>20GB</totalSizeCap>
+      <!-- 60 days to keep -->
+      <maxHistory>60</maxHistory>
+    </rollingPolicy>
     <encoder>
-      <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M -
-        %msg%n
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %level %logger{35} -%msg%n</pattern>
+    </encoder>
+  </appender>
+  <appender name="STDOUT"
+    class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>
+        %d{yyyy-MM-dd HH:mm:ss} [%thread] %level %logger{35} -%msg%n
       </pattern>
     </encoder>
   </appender>
   <root level="info">
     <appender-ref ref="STDOUT"/>
+  </root>
+  <root level="info">
+    <appender-ref ref="FILE-ROLLING"/>
   </root>
 </configuration>
